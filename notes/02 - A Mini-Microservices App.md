@@ -2,7 +2,7 @@
 
 
 
-## Initial App Setup
+# Initial App Setup
 
 Generate a new React App using Create-React-App
 Create an Express-based project for the Posts Service
@@ -16,6 +16,8 @@ Create an Express-based project for the Comments Service
 npx: Run a command from a local or remote npm package
 npm: javascript package manager
 
+
+# React Project Setup
 
 
 
