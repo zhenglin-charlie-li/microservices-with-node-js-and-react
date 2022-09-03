@@ -12,7 +12,7 @@ const posts = {};
 app.get('/posts', (req, res) => {
     res.send(posts);
     
-    console.log(posts);
+    console.log('get' + posts);
 });
 
 app.post('/posts', (req, res) => {
@@ -25,7 +25,7 @@ app.post('/posts', (req, res) => {
 
     res.status(201).send(posts[id]);
 
-    console.log(posts[id]);
+    console.log('post' + posts[id]);
 });
 
 app.listen(4000, () => {
