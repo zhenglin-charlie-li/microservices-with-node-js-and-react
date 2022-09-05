@@ -48,7 +48,3 @@ app.post('/events', (req, res) => {
 app.listen(4001, () => {
     console.log('listening on 4001');
 });
-
-
-
-// 026 Creating the Data Query Service
