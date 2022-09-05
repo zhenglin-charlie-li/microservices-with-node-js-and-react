@@ -40,6 +40,15 @@ app.post('/posts/:id/comments', async (req, res) => {
     console.log(commentsByPostId);
 });
 
+app.post('/events', (req, res) => {
+    console.log('Event Received', req.body)
+    res.send({});
+});
+
 app.listen(4001, () => {
     console.log('listening on 4001');
 });
+
+
+
+// 026 Creating the Data Query Service

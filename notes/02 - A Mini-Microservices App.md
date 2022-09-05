@@ -44,3 +44,39 @@ async function: The async and await keywords enable asynchronous, promise-based 
 useState: useState Hook from React. It lets us keep local state in a function component.
 
 useEffect: run some additional code after React has updated the DOM
+
+
+
+
+# Notes on Sync Communication
+
+| Pro                              | Con                                                           |
+| -------------------------------- | ------------------------------------------------------------- |
+| Conceptually easy to understand! | Introduces a dependency between services                      |
+|                                  | If any inter-service request fails, the overall request fails |
+|                                  | The entire request is only as fast as the slowest request     |
+|                                  | Can easily introduce webs of requests                         |
+
+
+
+
+
+# Notes on Async Communication
+
+| Pros                                                   | Cons                 |
+| ------------------------------------------------------ | -------------------- |
+| Query Service has zero dependencies on other services! | Data duplication.    |
+| Query Service will be extremely fast!                  | Harder to understand |
+
+
+# Event Bus
+- Many different implementations. RabbitMQ, Kafka, NATS...
+
+- Receives events, publishes them to listeners
+
+restart wsl `Get-Service LxssManager | Restart-Service`
+
+
+
+
+
