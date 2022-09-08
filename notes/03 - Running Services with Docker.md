@@ -52,9 +52,16 @@ docker run -it chesterheng/posts sh
 docker ps
 docker exec -it a643fdbf134e sh
 docker logs a643fdbf134e
+
+
+docker system prune
 ```
 
+Docker create command creates a fresh new container from a docker image. However, it doesn’t run it immediately.
 
+Docker start command will start any stopped container. If you used docker create command to create a container, you can start it with this command.
+
+Docker run command is a combination of create and start as it creates a new container and starts it immediately. In fact, the docker run command can even pull an image from Docker Hub if it doesn’t find the mentioned image on your system.
 
 
 
