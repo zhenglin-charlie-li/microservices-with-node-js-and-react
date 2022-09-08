@@ -77,6 +77,12 @@ useEffect: run some additional code after React has updated the DOM
 restart wsl `Get-Service LxssManager | Restart-Service`
 
 
+# 040 Dealing with Missing Events
+
+- Sync access to other services
+- Directly access to DB of other services
+- Store all the event in event bus
+- 
 
 
 
