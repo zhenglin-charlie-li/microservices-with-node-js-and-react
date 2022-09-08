@@ -19,6 +19,8 @@ Kubernetes is a tool for running a bunch of different containers We give it some
 
 # Dockerizing the Posts Service
 
+**Docker run a Linux VM**
+
 Here is the format of the Dockerfile:
 
 | INSTRUCTION | arguments        | Comment                                              |
@@ -55,18 +57,35 @@ docker logs a643fdbf134e
 
 
 docker system prune
+docker logs
+
+
+docker exec -it naughty_mcnulty redis-cli
 ```
 
-Docker create command creates a fresh new container from a docker image. However, it doesn’t run it immediately.
+## docker create VS docker run VS docker start
 
-Docker start command will start any stopped container. If you used docker create command to create a container, you can start it with this command.
+- Docker create command creates a fresh new container from a docker image. However, it doesn’t run it immediately.
 
-Docker run command is a combination of create and start as it creates a new container and starts it immediately. In fact, the docker run command can even pull an image from Docker Hub if it doesn’t find the mentioned image on your system.
+- Docker start command will start any stopped container. If you used docker create command to create a container, you can start it with this command.
+
+- Docker run command is a combination of create and start as it creates a new container and starts it immediately. In fact, the docker run command can even pull an image from Docker Hub if it doesn’t find the mentioned image on your system.
 
 
+## docker stop VS docker kill
 
+- docker stop attempts to gracefully shutdown container(s) while docker kill (by default) immediately stops/terminates them;
+- docker stop issues a SIGTERM signal to the main process inside the container, while docker kill (by default) issues a SIGKILL signal;
 
+## The Purpose of the 'it' Flag
 
+`-it` = `-i -t`
+
+**Docker run a Linux VM**
+**A process attaches three channal: STDIN    STDOUT    STDERR**
+
+`-i` makes whatever you type go into STDIN
+`-t` makes format be nice (easily understanding)
 
 
 
