@@ -1,7 +1,7 @@
-# microservices-with-node-js-and-react
+# Microservices with Node JS and React
 
 
-## reference
+## Reference
 Course: https://www.udemy.com/course/microservices-with-node-js-and-react/
 
 Note: https://github.com/chesterheng/microservices-node-react
