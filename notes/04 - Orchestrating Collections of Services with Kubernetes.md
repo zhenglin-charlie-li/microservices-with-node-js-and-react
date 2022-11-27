@@ -35,14 +35,33 @@ Docker swarm (and Kubernetes): think of it as a rancher that manages the cows.
 
 
 
+# Creating a Pod
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: posts
+spec:
+  containers:
+    - name: posts
+      image: zhenglinli9875/posts:0.0.1
+```
+# Understanding a Pod Spec
+| Configuration Parameters       | Notes                                                                                                               |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| apiVersion: v1                 | K8s is extensible - we can add in our own custom objects.  This specifies the set of objects we want K8s to look at |
+| kind: Pod                      | The type of object we want to create                                                                                |
+| metadata:                      | Config options for the object we are about to create                                                                |
+| name: posts                    | When the pod is created, give it a name of 'posts'                                                                  |
+| spec:                          | The exact attributes we want to apply to the object we are about to create                                          |
+| containers:                    | We can create many containers in a single pod                                                                       |
+| - name: posts                  | Make a container with a name of 'posts'                                                                             |
+| image: chesterheng/posts:0.0.1 | The exact image we want to use                                                                                      |
 
-Whenever I create a kubernetes deployment,  it will auto download image from docker hub?
-
-- It depends on the ImagePullPolicy of the Pod
-- The default pull policy is IfNotPresent
-- It will try to download the image if it’s not already present on the node
 
 
+
+# Common Kubectl Commands
 
 | Deployment Commands                            | Explanation                                                                                                      |
 | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -51,6 +70,81 @@ Whenever I create a kubernetes deployment,  it will auto download image from doc
 | kubectl apply -f [config file name]            | Create a deployment out of a config file                                                                         |
 | kubectl delete deployment [depl_name]          | Delete a deployment                                                                                              |
 | kubectl rollout restart deployment [depl_name] | Get a deployment to restart all pods.  Will use latest version of an image if the pod spec has a tag of 'latest' |
+
+
+
+
+
+# Introducing Deployments
+Whenever I create a kubernetes deployment,  it will auto download image from docker hub?
+
+- It depends on the ImagePullPolicy of the Pod
+- The default pull policy is IfNotPresent
+- It will try to download the image if it’s not already present on the node
+
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: posts-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: posts
+  template:
+    metadata:
+      labels:
+        app: posts
+    spec:
+      containers:
+        - name: posts
+          image: zhenglinli9875/posts:0.0.1
+```
+
+
+
+# Common Commands Around Deployments
+| Deployment Commands                            | Explanation                                                                                                      |
+| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| kubectl get deployments                        | List all the running deployments                                                                                 |
+| kubectl describe deployment [depl name]        | Print out details about a specific deployment                                                                    |
+| kubectl apply -f [config file name]            | Create a deployment out of a config file                                                                         |
+| kubectl delete deployment [depl_name]          | Delete a deployment                                                                                              |
+| kubectl rollout restart deployment [depl_name] | Get a deployment to restart all pods.  Will use latest version of an image if the pod spec has a tag of 'latest' |
+
+
+
+
+# Updating Deployments - Method #1
+- Step 1 - Make a change to your project code
+- Step 2 - Rebuild the image, specifying a new image version
+- Step 3 - In the deployment config file, update the version of the image
+- Step 4 - Run the command: kubectl apply -f [depl file name]
+
+
+# Preferred Method for Updating Deployments - Method #2
+- Step 1 - The deployment must be using the 'latest' tag in the pod spec section
+  - image: chesterheng/posts:latest or 
+  - image: chesterheng/posts
+- Step 2 - Make an update to your code
+- Step 3 - Build the image
+- Step 4 - Push the image to docker hub
+
+
+# Networking With Services
+
+
+
+| Types of Services | Explanation                                                                                                  |
+| ----------------- | ------------------------------------------------------------------------------------------------------------ |
+| Cluster IP        | Sets up an easy-to-remember URL to access a pod. Only exposes pods in the cluster                            |
+| Node Port         | Makes a pod accessible from outside the cluster.  Usually only used for dev purposes                         |
+| Load Balancer     | Makes a pod accessible from outside the cluster.  This is the right way to expose a pod to the outside world |
+| External Name     | Redirects an in-cluster request to a CNAME url.....don't worry about this one....                            |
+
+
 
 
 

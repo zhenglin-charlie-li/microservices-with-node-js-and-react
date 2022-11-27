@@ -42,6 +42,7 @@ app.post('/events', (req, res) => {
 });
 
 app.listen(4000, () => {
+    console.log('zhenglinli9875/posts:0.0.6');
     console.log('listening on 4000');
 });
 
