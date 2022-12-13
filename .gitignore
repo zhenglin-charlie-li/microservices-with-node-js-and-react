@@ -1,2 +1,7 @@
 kaffoldq
 projects/blog/infra/k8s/skaffold
+projects/final/app/auth/node_modules
+projects/ticketing/auth/node_modules
+learning/ts_learning/ts_micro_learning/node_modules
+learning/ts_learning/ts_microsoft_learning/.vscode
+
